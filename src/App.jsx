@@ -6,6 +6,10 @@ export default function UltraBirthdayApp() {
   const [step, setStep] = useState(0);
   const [typedText, setTypedText] = useState("");
   const [isPaused, setIsPaused] = useState(false);
+  const [password, setPassword] = useState("");
+
+  const correctPassword = "Sirideepu";
+
   const canvasRef = useRef(null);
 
   const capitalizeFirstLetter = (text) => {
@@ -16,9 +20,9 @@ export default function UltraBirthdayApp() {
   const message = `Happy Birthday ${capitalizeFirstLetter(name)} ❤️
 
 Enjoy your day 🎉
-May all your dreams comes true ✨`;
+May all your dreams come true ✨`;
 
-  // ✨ Typing effect
+  // ✨ Typing Effect
   useEffect(() => {
     if (step === 2) {
       let i = 0;
@@ -53,7 +57,7 @@ May all your dreams comes true ✨`;
           y,
           angle: Math.random() * 2 * Math.PI,
           speed: Math.random() * 4 + 2,
-          radius: 2
+          radius: 2,
         });
       }
     }
@@ -84,17 +88,28 @@ May all your dreams comes true ✨`;
     return () => clearInterval(interval);
   }, [step]);
 
+  // 🔐 Unlock Logic
   const handleUnlock = () => {
     if (name.trim() === "") {
       alert("Enter your name ❤️");
       return;
     }
+
+    if (password.trim() === "") {
+      alert("Enter secret code 🔐");
+      return;
+    }
+
+    if (password.toLowerCase() !== correctPassword.toLowerCase()) {
+      alert("Wrong secret code ❌");
+      return;
+    }
+
     setStep(2);
   };
 
   return (
     <div className="container">
-
       {/* 🎆 Fireworks */}
       <canvas ref={canvasRef} className="fireworks"></canvas>
 
@@ -110,14 +125,20 @@ May all your dreams comes true ✨`;
       {/* STEP 0 */}
       {step === 0 && (
         <div className="input-section">
-          <h1>
-            💖 <span>Enter Your Name</span> 💖
-          </h1>
+          <h1>💖 <span>Enter Your Name</span> 💖</h1>
 
           <input
+            type="text"
             value={name}
             onChange={(e) => setName(e.target.value)}
             placeholder="Enter name..."
+          />
+
+          <input
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            placeholder="Enter secret code 🔐"
           />
 
           <button onClick={handleUnlock}>Unlock 💌</button>
@@ -127,28 +148,29 @@ May all your dreams comes true ✨`;
       {/* STEP 2 */}
       {step === 2 && (
         <div className="message-section">
-
-          {/* 📸 Image Scroll (FIXED WITH TOUCH) */}
+          {/* 📸 Image Scroll */}
           <div className="images">
-  <div className={`images-track ${isPaused ? "paused" : ""}`}>
-    {[
-      "img1.jpeg","img2.jpeg","img3.jpeg","img4.jpeg","img5.jpeg",
-      "img6.jpeg","img7.jpeg","img8.jpeg","img9.jpeg","img10.jpeg","img11.jpeg","img12.jpeg","img13.jpeg","img14.jpeg",
+            <div className={`images-track ${isPaused ? "paused" : ""}`}>
+              {[
+                "img1.jpeg","img2.jpeg","img3.jpeg","img4.jpeg","img5.jpeg",
+                "img6.jpeg","img7.jpeg","img8.jpeg","img9.jpeg","img10.jpeg",
+                "img11.jpeg","img12.jpeg","img13.jpeg","img14.jpeg",
 
-      // duplicate for smooth infinite scroll
-      "img1.jpeg","img2.jpeg","img3.jpeg","img4.jpeg","img5.jpeg",
-      "img6.jpeg","img7.jpeg","img8.jpeg","img9.jpeg","img10.jpeg","img11.jpeg","img12.jpeg","img13.jpeg","img14.jpeg",
-    ].map((img, i) => (
-      <img
-        key={i}
-        src={`/Deepikaimages/${img}`}   // ✅ correct path
-        alt=""
-        onTouchStart={() => setIsPaused(true)}
-        onTouchEnd={() => setIsPaused(false)}
-      />
-    ))}
-  </div>
-</div>
+                // duplicate for smooth scroll
+                "img1.jpeg","img2.jpeg","img3.jpeg","img4.jpeg","img5.jpeg",
+                "img6.jpeg","img7.jpeg","img8.jpeg","img9.jpeg","img10.jpeg",
+                "img11.jpeg","img12.jpeg","img13.jpeg","img14.jpeg",
+              ].map((img, i) => (
+                <img
+                  key={i}
+                  src={`/Deepikaimages/${img}`}
+                  alt=""
+                  onTouchStart={() => setIsPaused(true)}
+                  onTouchEnd={() => setIsPaused(false)}
+                />
+              ))}
+            </div>
+          </div>
 
           {/* ✨ Message */}
           <pre className="typed-text">{typedText}</pre>
