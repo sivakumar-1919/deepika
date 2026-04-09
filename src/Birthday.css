@@ -1,0 +1,185 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
+  font-family: "Poppins", sans-serif;
+}
+
+/* 🌌 Container */
+.container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: radial-gradient(circle, #14001f, #000);
+  color: white;
+  position: relative;
+}
+
+/* 🎆 Fireworks */
+.fireworks {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+/* 💎 Card (FIXED) */
+.message-section,
+.input-section {
+  width: 90%;
+  max-width: 420px;
+  padding: 25px;
+  border-radius: 20px;
+  background: #0ac10d14;
+  
+  box-shadow: 0 0 30px rgba(255,0,150,0.5);
+  z-index: 2;
+  text-align: center;
+}
+
+/* 🔥 FIX TITLE */
+.input-section h1 {
+  font-size: 20px;
+  line-height: 1.3;
+  margin-bottom: 15px;
+  word-break: break-word;
+}
+
+/* 💖 Input */
+input {
+  width: 100%;
+  padding: 14px;
+  border-radius: 25px;
+  border: none;
+  margin-top: 15px;
+  text-align: center;
+  font-size: 15px;
+  outline: none;
+}
+
+/* 🔥 Button */
+button {
+  width: 100%;
+  margin-top: 15px;
+  padding: 14px;
+  border-radius: 25px;
+  border: none;
+  background: linear-gradient(45deg,#ff4d88,#ff9966);
+  color: white;
+  font-weight: bold;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+/* ❤️ Hearts */
+.hearts span {
+  position: absolute;
+  bottom: -10%;
+  font-size: 20px;
+  animation: floatUp 6s linear infinite;
+}
+
+.hearts span:nth-child(odd) {
+  left: 20%;
+}
+.hearts span:nth-child(even) {
+  left: 70%;
+}
+
+@keyframes floatUp {
+  to {
+    transform: translateY(-110vh);
+    opacity: 0;
+  }
+}
+
+/* 📸 Image Scroll */
+.images {
+  overflow: hidden;
+  margin-top: 10px;
+}
+
+.images-track {
+  display: flex;
+  gap: 10px;
+  width: max-content;
+  animation: scroll 20s linear infinite;
+}
+
+.images img {
+  width: 140px;
+  height: 100px;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+@keyframes scroll {
+  from {
+    transform: translateX(-50%);
+  }
+  to {
+    transform: translateX(0%);
+  }
+}
+
+/* ✨ Text */
+.typed-text {
+  margin-top: 15px;
+  white-space: pre-wrap;
+}
+
+/* 📱 Mobile */
+@media (max-width: 480px) {
+  .images img {
+    width: 110px;
+    height: 80px;
+  }
+
+  .message-section,
+  .input-section {
+    padding: 18px;
+  }
+
+  .input-section h1 {
+    font-size: 18px;
+  }
+}
+.input-section h1 {
+  color: #38bdf8;
+  text-shadow: 0 0 10px #38bdf8, 0 0 20px #0ea5e9;
+}
+.images-track.paused {
+  animation-play-state: paused;
+}
+
+@media (hover: none) {
+  .images img:active {
+    transform: scale(1.2);
+    box-shadow: 0 10px 25px rgba(56, 189, 248, 0.7);
+  }
+}
+.images-track {
+  display: flex;
+  gap: 10px;
+  width: max-content;
+  animation: scroll 25s linear infinite;
+}
+
+.images-track.paused {
+  animation-play-state: paused;
+}
+.images img {
+  width: 100px;
+  height: 100px;
+  border-radius: 10px;
+
+}

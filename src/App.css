@@ -1,0 +1,158 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(-45deg, #ff4e50, #fc913a, #f9d423, #24c6dc);
+  background-size: 400% 400%;
+  animation: gradient 10s ease infinite;
+  font-family: Arial;
+  color: white;
+  text-align: center;
+  padding: 20px;
+}
+
+@keyframes gradient {
+  0% {background-position: 0%}
+  50% {background-position: 100%}
+  100% {background-position: 0%}
+}
+
+/* Card */
+.card {
+  background: white;
+  color: black;
+  padding: 30px;
+  border-radius: 20px;
+  width: 100%;
+  max-width: 320px;
+}
+
+.card input {
+  width: 100%;
+  padding: 10px;
+  margin: 15px 0;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+}
+
+.card button {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  background: #ff4e50;
+  color: white;
+  border-radius: 10px;
+}
+
+/* Celebration */
+.title {
+  font-size: 2rem;
+}
+
+.typing {
+  margin: 10px 0;
+  font-size: 1.2rem;
+}
+
+/* Cake */
+.cake {
+  margin: 20px auto;
+  width: 120px;
+  cursor: pointer;
+}
+
+.layer {
+  height: 30px;
+  border-radius: 10px;
+  margin: 5px 0;
+}
+
+.top { background: #ffb6c1; }
+.middle { background: #ff69b4; }
+.bottom { background: #ff1493; }
+
+.candle {
+  width: 10px;
+  height: 30px;
+  background: yellow;
+  margin: 0 auto;
+  position: relative;
+}
+
+.candle::after {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 10px;
+  height: 10px;
+  background: orange;
+  border-radius: 50%;
+  animation: flame 0.5s infinite alternate;
+}
+
+@keyframes flame {
+  from { transform: translateX(-50%) scale(1); }
+  to { transform: translateX(-50%) scale(1.3); }
+}
+
+/* Confetti */
+.confetti span {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: white;
+  top: -10px;
+  left: calc(100% * var(--i));
+  animation: fall 3s linear infinite;
+}
+
+.confetti span:nth-child(n) {
+  --i: calc(var(--n) * 0.02);
+}
+
+@keyframes fall {
+  to {
+    transform: translateY(100vh);
+    opacity: 0;
+  }
+}
+
+/* Gallery */
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 15px;
+}
+
+.gallery img {
+  width: 90px;
+  height: 90px;
+  margin: 5px;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+/* Button */
+.back {
+  margin-top: 15px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 10px;
+}
+
+/* Mobile */
+@media (max-width: 500px) {
+  .title { font-size: 1.5rem; }
+  .typing { font-size: 1rem; }
+  .gallery img { width: 70px; height: 70px; }
+}
